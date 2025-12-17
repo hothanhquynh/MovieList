@@ -23,7 +23,9 @@ const opts = {  //modal để nhấn hình ảnh ra video
     const handleTrailer = async (id) =>{
     setTrailerKey('')
     try {
-      const url = `https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`;
+      const apiKey = import.meta.env.VITE_API_KEY;
+      //const url = `https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`;
+      const url = `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${apiKey}&language=en-US`;
       const options = {
         method: 'GET',
         headers: {
