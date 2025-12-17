@@ -1,3 +1,4 @@
+version: '3.8'
 services:
   movie-app:
     build:
@@ -7,3 +8,4 @@ services:
         - VITE_IMG_URL=https://image.tmdb.org/t/p/w500
     ports:
       - "3000:3000"
+    container_name: movie-app
