@@ -30,7 +30,7 @@ const opts = {  //modal để nhấn hình ảnh ra video
         method: 'GET',
         headers: {
         accept: 'application/json',
-        Authorization: `Bearer ${import.meta.env.VITE_API_KEY}`,
+       // Authorization: `Bearer ${import.meta.env.VITE_API_KEY}`,
   },
 };
 const movieKey = await fetch(url,options);
