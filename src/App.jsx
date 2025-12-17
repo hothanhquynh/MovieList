@@ -44,8 +44,8 @@ function App() {
         }
       };
       const apiKey = import.meta.env.VITE_API_KEY;
-    const url1 = `https://api.themoviedb.org/3/tv/popular?api_key=${apiKey}&language=vi&page=1`;
-    const url2 = `https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}&language=vi&page=1`;
+      const url1 = `https://api.themoviedb.org/3/tv/popular?api_key=${apiKey}&language=vi&page=1`;
+      const url2 = `https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}&language=vi&page=1`;
     //  const url1 = 'https://api.themoviedb.org/3/tv/popular?language=vi&page=1';
     //  const url2 = 'https://api.themoviedb.org/3/movie/top_rated?language=vi&page=1';
       const [res1, res2] = await Promise.all([
