@@ -15,12 +15,15 @@ function App() {
     // SỬA LỖI: Sử dụng tên biến state mới
     setSearchedMovies([]); 
     try {
-      const url = `https://api.themoviedb.org/3/search/movie?query=${searchVal}&include_adult=false&language=vi&page=1`;
+      const apiKey = import.meta.env.VITE_API_KEY; // Lấy key ra
+      // Thêm &api_key= vào URL
+      const url = `https://api.themoviedb.org/3/search/movie?query=${searchVal}&api_key=${apiKey}&include_adult=false&language=vi&page=1`;
+      //const url = `https://api.themoviedb.org/3/search/movie?query=${searchVal}&include_adult=false&language=vi&page=1`;
       const options = {
         method: 'GET',
         headers: {
           accept: 'application/json',
-          Authorization: `Bearer  ${import.meta.env.VITE_API_KEY}`
+          //Authorization: `Bearer  ${import.meta.env.VITE_API_KEY}`
         },
       };
       const searchResponse = await fetch(url, options); // Đổi tên biến để tránh trùng lặp nếu có
