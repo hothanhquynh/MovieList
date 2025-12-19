@@ -6,7 +6,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    stops:
+    steps:
     - name: Deploy-using-ssh
     uses: appleboy/ssh-action@master
     with:
@@ -16,10 +16,11 @@ jobs:
       port: 22
       script:
         cd /home/services/MovieList
-        git fetch-origin
+        git fetch origin
         git checkout production 
-        git pull
+        git pull origin production
         docker-compose up -d --build
         docker stop projectmovie || true
         docker rm projectmovie || true
         docker run -d --name projectmovie -p 4000:3000 projectmovie
+
