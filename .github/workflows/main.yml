@@ -1,4 +1,5 @@
 name: Next Deployment
+
 on:
   push:
     branches: [production]
@@ -7,20 +8,23 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: Deploy-using-ssh
-    uses: appleboy/ssh-action@master
-    with:
-      host: ${{ secrets.HOST}}
-      username: ${{ secrets.USERNAME }}
-      password: ${{ secrets.PASSWORD }}
-      port: 22
-      script:
-        cd /home/services/MovieList
-        git fetch origin
-        git checkout production 
-        git pull origin production
-        docker-compose up -d --build
-        docker stop projectmovie || true
-        docker rm projectmovie || true
-        docker run -d --name projectmovie -p 4000:3000 projectmovie
-
+      - name: Deploy-using-ssh
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: 22
+          script: |
+            cd /home/services/MovieList
+            git fetch origin
+            git checkout production
+            git pull origin production
+            
+            # Dọn dẹp để chạy port 4000 không bị lỗi trùng lặp
+            docker stop projectmovie || true
+            docker rm projectmovie || true
+            
+            # Build và chạy lại container
+            docker build -t projectmovie-image .
+            docker run -d --name projectmovie -p 4000:3000 projectmovie-image
