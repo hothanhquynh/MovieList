@@ -1,11 +1,13 @@
+#BÊN TRONG SERVICE LÀ CONTAINER DÙNG ĐỂ CHẠY
+#BUILD DÙNG ĐỂ TẠO IMAGE, RUN DÙNG ĐỂ CHẠY CONTAINER
 version: '3.8'
 services:
   movie-app:
     build:
-      context: .
-      args:
+      context: . #lấy code trong thư mục này để build
+      args: #truyền key qua dockerfile
         - VITE_API_KEY=375e4c38f90d2cee3287d6a60995f4da
         - VITE_IMG_URL=https://image.tmdb.org/t/p/w500
-    ports:
+    ports: # mở port
       - "3000:3000"
     container_name: movie-app
